@@ -39,7 +39,9 @@ const Page = async () => {
           'use server';
           const isbn13 = data.get('isbn13') as string;
           const bookname = data.get('bookname') as string;
-          await prisma.booklog.create({ data: { isbn13, bookname } });
+          const getdate = new Date('2000-01-01');
+          const readdate = new Date('2000-01-01');
+          await prisma.booklog.create({ data: { isbn13, bookname , getdate, readdate } });
           revalidatePath('/booklogs');
         }}
       >
