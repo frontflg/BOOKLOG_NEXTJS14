@@ -106,15 +106,15 @@ export default async function Page({ params }: { params: { ID: string } }) {
           <th className="bg-gray-200">発行日:</th>
           <td className="px-2">
             <input type="text" name="issuedate" size="10"
-             defaultValue={`${booklog?.issuedate.toLocaleDateString()}`} /></td>
+             defaultValue={`${booklog?.issuedate}` === 'null' ? '2000/01/01' : `${booklog?.issuedate.toLocaleDateString()}`} /></td>
           <th className="bg-gray-200">取得日:</th>
           <td className="px-2">
             <input type="text" name="getdate" size="10"
-             defaultValue={`${booklog?.getdate.toLocaleDateString()}`} /></td>
+             defaultValue={`${booklog?.getdate}` === 'null' ? '2000/01/01' : `${booklog?.getdate.toLocaleDateString()}`} /></td>
           <th className="bg-gray-200">読了日:</th>
           <td className="px-2">
             <input type="text" name="readdate" size="10"
-             defaultValue={`${booklog?.readdate.toLocaleDateString()}`} /></td>
+             defaultValue={`${booklog?.readdate}` === 'null' ? '2000/01/01' : `${booklog?.readdate.toLocaleDateString()}`} /></td>
           </tr>
         <tr className="px-4 py-2 border">
           <th className="bg-gray-200">所　有:</th>
