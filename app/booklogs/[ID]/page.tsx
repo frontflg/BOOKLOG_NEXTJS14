@@ -23,9 +23,9 @@ export default async function Page({ params }: { params: { ID: string } }) {
           const author      = data.get('author') as string;
           const publisher   = data.get('publisher') as string;
           const genre       = data.get('genre') as string;
-          const issuedate   = data.get('issuedate') as date;
-          const getdate     = data.get('getdate') as date;
-          const readdate    = data.get('readdate') as date;
+          const issuedate   = data.get('issuedate');
+          const getdate     = data.get('getdate');
+          const readdate    = data.get('readdate');
           const ownership   = parseInt(data.get('ownership'));
           const purchase    = parseInt(data.get('purchase'));
           const library     = data.get('library') as string;
@@ -119,7 +119,9 @@ export default async function Page({ params }: { params: { ID: string } }) {
         <tr className="px-4 py-2 border">
           <th className="bg-gray-200">所　有:</th>
           <td className="px-2" colspan="5">
-            <input type="number" name="ownership" defaultValue={`${booklog?.ownership}`} />
+            <input type="number" name="ownership" min="0" max="1"
+             defaultValue={`${booklog?.ownership}`} />
+            　0:非所有　1:所有
           </td></tr>
         <tr className="px-4 py-2 border">
           <th className="bg-gray-200">価　格:</th>
@@ -158,7 +160,6 @@ export default async function Page({ params }: { params: { ID: string } }) {
           'use server';
           const isbn13 = data.get('isbn13') as string;
           await prisma.booklog.delete({ where: { isbn13 } });
-          revalidatePath('/booklogs');
           redirect('/booklogs');
         }}
       >
@@ -172,3 +173,4 @@ export default async function Page({ params }: { params: { ID: string } }) {
     </div>
   );
 }
+
