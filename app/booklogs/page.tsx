@@ -8,7 +8,7 @@ const Page = async () => {
   return (
     <div className="m-8">
       <h1 className="text-xl font-bold">BOOKLOG一覧</h1>
-      <div class="h-96 overflow-scroll">
+      <div class="h-[480px] overflow-scroll">
         <table className="table-auto">
           <thead className="sticky top-0 z-10">
             <tr className="bg-gray-200">
