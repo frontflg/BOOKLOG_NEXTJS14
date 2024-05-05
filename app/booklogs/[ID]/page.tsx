@@ -2,7 +2,7 @@ import prisma from '@/lib/prisma';
 import Link from 'next/link';
 import Image from 'next/image';
 import { revalidatePath } from 'next/cache';
-// import { useRouter } from 'next/navigation';　<== エラーになる
+import { redirect } from 'next/navigation';
 
 export default async function Page({ params }: { params: { ID: string } }) {
   const id = String(params.ID);
@@ -53,8 +53,8 @@ export default async function Page({ params }: { params: { ID: string } }) {
               state,
             },
           });
-       // const router = useRouter();
-       // router.back();
+          revalidatePath('/booklogs');
+          redirect('/booklogs');
         }}
       >
       <table className="table-auto">
@@ -158,8 +158,8 @@ export default async function Page({ params }: { params: { ID: string } }) {
           'use server';
           const isbn13 = data.get('isbn13') as string;
           await prisma.booklog.delete({ where: { isbn13 } });
-       // const router = useRouter();
-       // router.back();
+          revalidatePath('/booklogs');
+          redirect('/booklogs');
         }}
       >
         <input type="hidden" name="isbn13" value={booklog?.isbn13} />
