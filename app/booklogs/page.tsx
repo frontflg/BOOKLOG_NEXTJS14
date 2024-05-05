@@ -53,7 +53,7 @@ const Page = async () => {
           type="submit"
           className="bg-blue-600 px-2 py-1 rounded-lg text-sm text-white"
         >
-          Add Book
+          登録
         </button>
       </form>
     </div>
