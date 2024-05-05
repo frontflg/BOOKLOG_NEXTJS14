@@ -1,6 +1,7 @@
 import prisma from '@/lib/prisma';
 import Link from 'next/link';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 const Page = async () => {
   const booklog = await prisma.booklog.findMany();
@@ -43,6 +44,7 @@ const Page = async () => {
           const readdate = new Date('2000-01-01');
           await prisma.booklog.create({ data: { isbn13, bookname , getdate, readdate } });
           revalidatePath('/booklogs');
+          redirect('/booklogs/' + isbn13);
         }}
       >
         <label htmlFor="isbn13">ISBN13:</label>
